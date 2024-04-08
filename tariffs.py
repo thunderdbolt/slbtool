@@ -538,34 +538,34 @@ def main():
                         #     </div>
                         # """
                         # st.markdown(total_tariffs_html, unsafe_allow_html=True)                  
-                    
-                        
-                        # -----------------------------------------------------------------------------
-                        # Function to convert and download dataframe to Excel
-                        # -----------------------------------------------------------------------------
-
-                        # Define the order of the columns as they should appear in the exported file
-                        column_order = [
-                            "SLB Part Number", "US HTS", "COO", "Value", "Weight", "MOT",
-                            "General Tariff Percentage", "COO China Tariff", "Aluminum Tariff", "Steel Tariff",
-                            "Potential ADD/CVD Flag", "CBP Merchandise Processing Fee", "CBP Harbor Maintenance Fee",
-                            "Tariffs & Fees to be Paid (%)", "Tariffs to be Paid (USD)", "Tariffs & Fees to be Paid (USD)"
-                        ]
-
-                        # Ensure new_df columns are in the correct order
-                        new_df = new_df[column_order]
-
-                        # Calculate the total tariffs if not already done
-                        Total_Tariffs = new_df['Tariffs & Fees to be Paid (USD)'].sum()
-
-                        # Add the Total_Tariffs to the new_df
-                        total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
-                        new_df = new_df.append(total_row, ignore_index=True)
-                        st.session_state['new_df'] = new_df
-                      
                     except:
                         pass    
                 display_editable_table()
+
+
+
+                # -----------------------------------------------------------------------------
+                # Function to convert and download dataframe to Excel
+                # -----------------------------------------------------------------------------
+
+                # Define the order of the columns as they should appear in the exported file
+                column_order = [
+                    "SLB Part Number", "US HTS", "COO", "Value", "Weight", "MOT",
+                    "General Tariff Percentage", "COO China Tariff", "Aluminum Tariff", "Steel Tariff",
+                    "Potential ADD/CVD Flag", "CBP Merchandise Processing Fee", "CBP Harbor Maintenance Fee",
+                    "Tariffs & Fees to be Paid (%)", "Tariffs to be Paid (USD)", "Tariffs & Fees to be Paid (USD)"
+                ]
+
+                # Ensure new_df columns are in the correct order
+                new_df = new_df[column_order]
+
+                # Calculate the total tariffs if not already done
+                Total_Tariffs = new_df['Tariffs & Fees to be Paid (USD)'].sum()
+
+                # Add the Total_Tariffs to the new_df
+                total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
+                new_df = new_df.append(total_row, ignore_index=True)
+                
                 # Call the function to make the download button available in the Streamlit app
                 if st.button("Download"):
                     # Function to convert DataFrame to Excel
