@@ -596,10 +596,10 @@ def main():
                             # Save the workbook
                             writer.save()
                             return output.getvalue()
-                    except Exception as e:
-                        print(f"Error occurred while saving Excel: {e}")
-                        # Handle the error as appropriate, maybe re-raise or return an error response
-                        raise
+                        except Exception as e:
+                            print(f"Error occurred while saving Excel: {e}")
+                            # Handle the error as appropriate, maybe re-raise or return an error response
+                            raise
 
                     # Function to download the data as an Excel file
                     def download_excel(df):
