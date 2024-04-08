@@ -561,43 +561,44 @@ def main():
                         total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
                         new_df = new_df.append(total_row, ignore_index=True)
 
-                        # Function to convert DataFrame to Excel
-                        def to_excel(df):
-                            # Create a Pandas Excel writer using openpyxl as the engine.
-                            output = BytesIO()
-                            writer = pd.ExcelWriter(output, engine='openpyxl')
-                            df.to_excel(writer, index=False, sheet_name='Sheet1')
-                            
-                            # Get the openpyxl workbook and worksheet objects.
-                            workbook = writer.book
-                            worksheet = writer.sheets['Sheet1']
-                            
-                            # Define the font style for the total row
-                            bold_red_font = Font(bold=True, color="FF0000")
-                            
-                            # Get the max row (last row) in the worksheet
-                            max_row = worksheet.max_row
-                            
-                            # Apply the font style to all cells in the last row
-                            for cell in worksheet[max_row]:
-                                cell.font = bold_red_font
-                            
-                            # Save the workbook
-                            writer.save()
-                            return output.getvalue()
-
-                        # Function to download the data as an Excel file
-                        def download_excel(df):
-                            excel_data = to_excel(df)
-                            st.download_button(label='📥 Download Excel',
-                                            data=excel_data,
-                                            file_name='tariff_data.xlsx',
-                                            mime='application/vnd.ms-excel')                        
+                      
                     except:
                         pass    
                 display_editable_table()
                 # Call the function to make the download button available in the Streamlit app
                 if st.button("Download"):
+                    # Function to convert DataFrame to Excel
+                    def to_excel(df):
+                        # Create a Pandas Excel writer using openpyxl as the engine.
+                        output = BytesIO()
+                        writer = pd.ExcelWriter(output, engine='openpyxl')
+                        df.to_excel(writer, index=False, sheet_name='Sheet1')
+                        
+                        # Get the openpyxl workbook and worksheet objects.
+                        workbook = writer.book
+                        worksheet = writer.sheets['Sheet1']
+                        
+                        # Define the font style for the total row
+                        bold_red_font = Font(bold=True, color="FF0000")
+                        
+                        # Get the max row (last row) in the worksheet
+                        max_row = worksheet.max_row
+                        
+                        # Apply the font style to all cells in the last row
+                        for cell in worksheet[max_row]:
+                            cell.font = bold_red_font
+                        
+                        # Save the workbook
+                        writer.save()
+                        return output.getvalue()
+
+                    # Function to download the data as an Excel file
+                    def download_excel(df):
+                        excel_data = to_excel(df)
+                        st.download_button(label='📥 Download Excel',
+                                        data=excel_data,
+                                        file_name='tariff_data.xlsx',
+                                        mime='application/vnd.ms-excel')  
                     download_excel(new_df)
       
                 
