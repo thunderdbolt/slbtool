@@ -47,7 +47,7 @@ with col1:
 
 with col2:
     st.markdown(
-        f'<a href="{pipesim_website_url}">'
+        # f'<a href="{pipesim_website_url}">'
         f'<img src="{pipesim_logo_url}" alt="Pipesim Logo" style="max-height:{max_image_height}; height:auto; width:auto;">'
         f'</a>',
         unsafe_allow_html=True,
