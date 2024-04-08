@@ -23,30 +23,38 @@ ghg_website_url = "https://www.iogp.org/blog/news/how-the-oil-and-gas-industry-c
 # Display images with responsive design
 col1, col2, col3, col4 = st.columns([1, 1, 6, 2])  # Adjust column ratios as needed
 
+# Determine the max height based on your layout requirements or through trial and error
+max_image_height = "100px"  # Adjust this value as needed to fit your header layout
+
 with col1:
     st.markdown(
-        f'<a href="{slb_website_url}"><img src="{slb_logo_url}" alt="SLB Logo 1" style="width:100%;"></a>',
+        f'<a href="{slb_website_url}">'
+        f'<img src="{slb_logo_url}" alt="SLB Logo" style="max-height:{max_image_height}; height:auto; width:auto;">'
+        f'</a>',
         unsafe_allow_html=True,
     )
 
 with col2:
     st.markdown(
-        f'<a href="{pipesim_website_url}"><img src="{pipesim_logo_url}" alt="SLB Logo 2" style="width:100%;"></a>',
+        f'<a href="{pipesim_website_url}">'
+        f'<img src="{pipesim_logo_url}" alt="Pipesim Logo" style="max-height:{max_image_height}; height:auto; width:auto;">'
+        f'</a>',
         unsafe_allow_html=True,
     )
 
 with col3:
     st.markdown(
         f'<a href="{slb_website_url}">'
-        f'<img src="{mid_image_url}" alt="Middle Image" style="width:100%; height:auto; max-height:100px;">'
+        f'<img src="{mid_image_url}" alt="Middle Image" style="max-height:{max_image_height}; width:auto;">'
         f'</a>',
         unsafe_allow_html=True,
     )
 
-
 with col4:
     st.markdown(
-        f'<a href="{seal_award_website_url}"><img src="{seal_award_image_url}" alt="SLB Logo 4" style="width:100%; height:auto;"></a>',
+        f'<a href="{seal_award_website_url}">'
+        f'<img src="{seal_award_image_url}" alt="Seal Award Logo" style="max-height:{max_image_height}; height:auto; width:auto;">'
+        f'</a>',
         unsafe_allow_html=True,
     )
 
