@@ -588,10 +588,11 @@ def main():
                     # Function to download the data as an Excel file
                     def download_excel(df):
                         excel_data = to_excel(df)
-                        st.download_button(label='📥 Download Excel',
-                                        data=excel_data,
-                                        file_name='tariff_data.xlsx',
-                                        mime='application/vnd.ms-excel')  
+                        st.download_button(label='Download Excel',
+                                           data=excel_data,
+                                           file_name='tariff_data.xlsx',
+                                           mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+ 
                     # Ensure new_df is available in the session state before attempting to download
                     if 'new_df' in st.session_state:
                         download_excel(st.session_state['new_df'])
