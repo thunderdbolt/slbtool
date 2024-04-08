@@ -592,16 +592,13 @@ def main():
                             st.download_button(label='📥 Download Excel',
                                             data=excel_data,
                                             file_name='tariff_data.xlsx',
-                                            mime='application/vnd.ms-excel')
-                            
-                        # Call the function to make the download button available in the Streamlit app
-                        if st.button("Download"):
-                            download_excel(new_df)
-                        
+                                            mime='application/vnd.ms-excel')                        
                     except:
                         pass    
                 display_editable_table()
-
+                # Call the function to make the download button available in the Streamlit app
+                if st.button("Download"):
+                    download_excel(new_df)
       
                 
 
