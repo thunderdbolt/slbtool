@@ -45,12 +45,11 @@ with col2:
 with col3:
     st.markdown(
         f'<a href="{slb_website_url}">'
-        f'<img src="{mid_image_url}" alt="Middle Image" style="width:100%; height:auto; max-height:100px;">'
+        f'<img src="{mid_image_url}" alt="Middle Image" style="max-height:{max_image_height}; width:100%;">'
         f'</a>',
         unsafe_allow_html=True,
     )
-
-
+    
 with col4:
     st.markdown(
         f'<a href="{seal_award_website_url}">'
