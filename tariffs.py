@@ -595,7 +595,8 @@ def main():
                                             mime='application/vnd.ms-excel')
                             
                         # Call the function to make the download button available in the Streamlit app
-                        download_excel(new_df)
+                        if st.button("Download"):
+                            download_excel(new_df)
                         
                     except:
                         pass    
