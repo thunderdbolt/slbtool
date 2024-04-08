@@ -15,8 +15,8 @@ slb_website_url = "https://www.slb.com/"  # The URL you want to open when the lo
 pipesim_logo_url = "https://americanpatriotsdecals.com/cdn/shop/products/American-Bald-Eagle-American-Flag.jpg?v=1638310152"
 pipesim_website_url = "https://www.software.slb.com/products/pipesim"
 mid_image_url = "https://images.rigzone.com/images/news/articles/SLB-Bags-5Year-Digital-Deal-with-Petrobras-173287-1200x900.webp"
-seal_award_image_url = "https://user-images.githubusercontent.com/135745865/255714101-87efe316-8c80-4e17-a2cf-5afb7a925ec2.jpg"
-seal_award_website_url = "https://www.slb.com/resource-library/updates/2023/slb-recognized-as-a-sustainability-leader-by-seal-for-the-second-consecutive-year"
+seal_award_image_url = "https://cei.org/wp-content/uploads/2017/08/2000px-Seal_of_the_United_States_Department_of_Commerce.svg_.png"
+seal_award_website_url = "https://www.commerce.gov/"
 ghg_image_url = "https://lot.dhl.com/wp-content/uploads/2019/05/res_shutterstock_377010349-800x420.jpg"
 ghg_website_url = "https://www.iogp.org/blog/news/how-the-oil-and-gas-industry-contributes-to-a-lower-carbon-future/"
 # Display images
