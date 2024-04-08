@@ -14,7 +14,7 @@ slb_logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Lo
 slb_website_url = "https://www.slb.com/"  # The URL you want to open when the logo is clicked
 pipesim_logo_url = "https://americanpatriotsdecals.com/cdn/shop/products/American-Bald-Eagle-American-Flag.jpg?v=1638310152"
 # pipesim_website_url = "https://www.software.slb.com/products/pipesim"
-mid_image_url = "https://images.rigzone.com/images/news/articles/SLB-Bags-5Year-Digital-Deal-with-Petrobras-173287-1200x900.webp"
+mid_image_url = "https://www.umsl.edu/technology/procurement/files/images/techimg.jpg"
 seal_award_image_url = "https://cei.org/wp-content/uploads/2017/08/2000px-Seal_of_the_United_States_Department_of_Commerce.svg_.png"
 seal_award_website_url = "https://dataweb.usitc.gov/"
 ghg_image_url = "https://github.com/thunderdbolt/slbtool/blob/main/tariffs.png?raw=true"
