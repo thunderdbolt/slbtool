@@ -570,28 +570,43 @@ def main():
                 if st.button("Download"):
                     # Function to convert DataFrame to Excel
                     def to_excel(df):
-                        # Create a BytesIO buffer to hold the Excel file
+                        # Create a BytesIO buffer to hold the Excel file in memory
                         output = BytesIO()
-                        
-                        # Create a Pandas Excel writer using openpyxl as the engine
+                    
+                        # Create a Pandas Excel writer using the 'openpyxl' engine and the BytesIO buffer
                         with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                            # Write the DataFrame to the Excel writer
                             df.to_excel(writer, index=False, sheet_name='Sheet1')
-                            # The writer is automatically closed after exiting the 'with' block, saving the file
-                        
-                        # Get the value of the BytesIO buffer
+                    
+                            # Get the openpyxl workbook and worksheet objects
+                            workbook = writer.book
+                            worksheet = writer.sheets['Sheet1']
+                    
+                            # Define the font style for the total row
+                            bold_red_font = Font(bold=True, color="FF0000")
+                    
+                            # Get the max row (last row) in the worksheet
+                            max_row = worksheet.max_row
+                    
+                            # Apply the font style to all cells in the last row
+                            for row in worksheet.iter_rows(min_row=max_row, max_row=max_row):
+                                for cell in row:
+                                    cell.font = bold_red_font
+                    
+                        # Get the Excel file content from the BytesIO buffer
                         excel_data = output.getvalue()
-                        
-                        # Return the Excel data
+                    
+                        # Return the Excel file content, which can be used as a response in a web application for download
                         return excel_data
 
 
                     # Function to download the data as an Excel file
                     def download_excel(df):
                         excel_data = to_excel(df)
-                        st.download_button(label='Download Excel',
-                                           data=excel_data,
-                                           file_name='tariff_data.xlsx',
-                                           mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                        st.download_button(label='📥 Download Excel',
+                                        data=excel_data,
+                                        file_name='tariff_data.xlsx',
+                                        mime='application/vnd.ms-excel')
  
                     # Ensure new_df is available in the session state before attempting to download
                     if 'new_df' in st.session_state:
