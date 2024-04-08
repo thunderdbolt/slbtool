@@ -8,7 +8,7 @@ from openpyxl.styles import Font
 # -----------------------------------------------------------------------------
 
 #Tab name config
-st.set_page_config(page_icon="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Logo_2022.svg/2560px-SLB_Logo_2022.svg.png", page_title="Tariffs Calculator", layout="wide")
+st.set_page_config(page_icon="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Logo_2022.svg/2560px-SLB_Logo_2022.svg.png", page_title="Tariffs Processing", layout="wide")
 # URLs for the images
 slb_logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Logo_2022.svg/2560px-SLB_Logo_2022.svg.png"
 slb_website_url = "https://www.slb.com/"  # The URL you want to open when the logo is clicked
