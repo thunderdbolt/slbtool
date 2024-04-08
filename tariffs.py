@@ -497,7 +497,7 @@ def main():
                             
                             Total_Tariffs += new_df.at[index, 'Tariffs & Fees to be Paid (USD)']
 
-                    # try:  
+                    try:  
                         if 'CBP Merchandise Processing Fee' not in new_df.columns:
                             new_df['CBP Merchandise Processing Fee'] = 31.67
 
@@ -559,8 +559,7 @@ def main():
 
                         # Add the Total_Tariffs to the new_df
                         total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
-                        if isinstance(new_df, pd.DataFrame):
-                            new_df = new_df.append(total_row, ignore_index=True)
+                        new_df = new_df.append(total_row, ignore_index=True)
 
                         # Function to convert DataFrame to Excel
                         def to_excel(df):
@@ -598,8 +597,8 @@ def main():
                         # Call the function to make the download button available in the Streamlit app
                         download_excel(new_df)
                         
-                    # except:
-                    #     pass    
+                    except:
+                        pass    
                 display_editable_table()
 
       
