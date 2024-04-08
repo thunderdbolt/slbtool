@@ -557,6 +557,7 @@ def main():
                 ]
 
                 # Ensure new_df columns are in the correct order
+                new_df = st.session_state['new_df']
                 new_df = new_df[column_order]
 
                 # Calculate the total tariffs if not already done
@@ -606,7 +607,7 @@ def main():
  
                     # Ensure new_df is available in the session state before attempting to download
                     if 'new_df' in st.session_state:
-                        download_excel(st.session_state['new_df'])
+                        download_excel(new_df)
                     else:
                         st.error("No data available to download.")
       
