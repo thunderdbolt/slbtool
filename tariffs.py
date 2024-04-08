@@ -12,7 +12,7 @@ st.set_page_config(page_icon="https://upload.wikimedia.org/wikipedia/commons/thu
 # URLs for the images
 slb_logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Logo_2022.svg/2560px-SLB_Logo_2022.svg.png"
 slb_website_url = "https://www.slb.com/"  # The URL you want to open when the logo is clicked
-pipesim_logo_url = "https://img.freepik.com/free-psd/shipping-container-with-united-states-flag-transparent-background_35913-3349.jpg?w=740&t=st=1712557393~exp=1712557993~hmac=443eba6049eba084cf128b6353c7167d0f474db5ef8a5406e4544db113291e69"
+pipesim_logo_url = "https://www.federalflags.com/cdn/shop/products/Polyester-American-flag-closeup-angle_6647de24-6210-4bb8-a86f-2b0c5923c020_1200x.jpg?v=1645022087"
 pipesim_website_url = "https://www.software.slb.com/products/pipesim"
 mid_image_url = "https://user-images.githubusercontent.com/135745865/255713972-5d9e7b57-e6d7-4d84-954d-16755f5a692e.png"
 seal_award_image_url = "https://user-images.githubusercontent.com/135745865/255714101-87efe316-8c80-4e17-a2cf-5afb7a925ec2.jpg"
