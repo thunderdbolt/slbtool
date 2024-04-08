@@ -537,80 +537,78 @@ def main():
                         #         <strong>Total Tariffs & Fees to be Paid (USD): {Total_Tariffs}</strong>
                         #     </div>
                         # """
-                        # st.markdown(total_tariffs_html, unsafe_allow_html=True)                  
+                        # st.markdown(total_tariffs_html, unsafe_allow_html=True)
+
+                        # -----------------------------------------------------------------------------
+                        # Function to convert and download dataframe to Excel
+                        # -----------------------------------------------------------------------------
+        
+                        # Define the order of the columns as they should appear in the exported file
+                        column_order = [
+                            "SLB Part Number", "US HTS", "COO", "Value", "Weight", "MOT",
+                            "General Tariff Percentage", "COO China Tariff", "Aluminum Tariff", "Steel Tariff",
+                            "Potential ADD/CVD Flag", "CBP Merchandise Processing Fee", "CBP Harbor Maintenance Fee",
+                            "Tariffs & Fees to be Paid (%)", "Tariffs to be Paid (USD)", "Tariffs & Fees to be Paid (USD)"
+                        ]
+        
+                        # Ensure new_df columns are in the correct order
+                        new_df = st.session_state['new_df'][column_order]
+                        
+                        # Calculate the total tariffs if not already done
+                        Total_Tariffs = new_df['Tariffs & Fees to be Paid (USD)'].sum()
+                        
+                        # Add the Total_Tariffs to the new_df
+                        total_row_data = [None]*(len(column_order)-1) + [Total_Tariffs]
+                        total_row_df = pd.DataFrame([total_row_data], columns=column_order)
+                        new_df = pd.concat([new_df, total_row_df], ignore_index=True)
+        
+                        
+                        # Call the function to make the download button available in the Streamlit app
+                        # Function to convert DataFrame to Excel
+                        def to_excel(df):
+                            # Create a BytesIO buffer to hold the Excel file in memory
+                            output = BytesIO()
+                            
+                            # Create a Pandas Excel writer using the 'openpyxl' engine and the BytesIO buffer
+                            with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                                # Write the DataFrame to the Excel writer
+                                df.to_excel(writer, index=False, sheet_name='Sheet1')
+                                
+                                # Access the openpyxl workbook and worksheet objects to apply styles
+                                workbook = writer.book
+                                worksheet = writer.sheets['Sheet1']
+                        
+                                # Define the font style for the total row
+                                bold_red_font = Font(bold=True, color="FF0000")
+                                
+                                # Get the max row (last row) in the worksheet
+                                max_row = worksheet.max_row
+                                
+                                # Apply the font style to all cells in the last row
+                                for row in worksheet.iter_rows(min_row=max_row, max_row=max_row):
+                                    for cell in row:
+                                        cell.font = bold_red_font
+                            
+                            # At this point, the ExcelWriter context is closed and the data is saved to the output buffer
+                            return output.getvalue()
+                        
+                        def download_excel(df):
+                            excel_data = to_excel(df)
+                            st.download_button(label='📥 Download Excel',
+                                               data=excel_data,
+                                               file_name='tariff_data.xlsx',
+                                               mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        
+        
+                        # Ensure new_df is available in the session state before attempting to download
+                        if 'new_df' in st.session_state:
+                            download_excel(new_df)
+                        else:
+                            st.error("No data available to download.")
+                    
                     except:
                         pass    
-                display_editable_table()
-
-
-
-                # -----------------------------------------------------------------------------
-                # Function to convert and download dataframe to Excel
-                # -----------------------------------------------------------------------------
-
-                # Define the order of the columns as they should appear in the exported file
-                column_order = [
-                    "SLB Part Number", "US HTS", "COO", "Value", "Weight", "MOT",
-                    "General Tariff Percentage", "COO China Tariff", "Aluminum Tariff", "Steel Tariff",
-                    "Potential ADD/CVD Flag", "CBP Merchandise Processing Fee", "CBP Harbor Maintenance Fee",
-                    "Tariffs & Fees to be Paid (%)", "Tariffs to be Paid (USD)", "Tariffs & Fees to be Paid (USD)"
-                ]
-
-                # Ensure new_df columns are in the correct order
-                new_df = st.session_state['new_df'][column_order]
-                
-                # Calculate the total tariffs if not already done
-                Total_Tariffs = new_df['Tariffs & Fees to be Paid (USD)'].sum()
-                
-                # Add the Total_Tariffs to the new_df
-                total_row_data = [None]*(len(column_order)-1) + [Total_Tariffs]
-                total_row_df = pd.DataFrame([total_row_data], columns=column_order)
-                new_df = pd.concat([new_df, total_row_df], ignore_index=True)
-
-                
-                # Call the function to make the download button available in the Streamlit app
-                # Function to convert DataFrame to Excel
-                def to_excel(df):
-                    # Create a BytesIO buffer to hold the Excel file in memory
-                    output = BytesIO()
-                    
-                    # Create a Pandas Excel writer using the 'openpyxl' engine and the BytesIO buffer
-                    with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                        # Write the DataFrame to the Excel writer
-                        df.to_excel(writer, index=False, sheet_name='Sheet1')
-                        
-                        # Access the openpyxl workbook and worksheet objects to apply styles
-                        workbook = writer.book
-                        worksheet = writer.sheets['Sheet1']
-                
-                        # Define the font style for the total row
-                        bold_red_font = Font(bold=True, color="FF0000")
-                        
-                        # Get the max row (last row) in the worksheet
-                        max_row = worksheet.max_row
-                        
-                        # Apply the font style to all cells in the last row
-                        for row in worksheet.iter_rows(min_row=max_row, max_row=max_row):
-                            for cell in row:
-                                cell.font = bold_red_font
-                    
-                    # At this point, the ExcelWriter context is closed and the data is saved to the output buffer
-                    return output.getvalue()
-                
-                def download_excel(df):
-                    excel_data = to_excel(df)
-                    st.download_button(label='📥 Download Excel',
-                                       data=excel_data,
-                                       file_name='tariff_data.xlsx',
-                                       mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-
-
-                # Ensure new_df is available in the session state before attempting to download
-                if 'new_df' in st.session_state:
-                    download_excel(new_df)
-                else:
-                    st.error("No data available to download.")
-      
+                display_editable_table()     
                 
 
 if __name__ == "__main__":
