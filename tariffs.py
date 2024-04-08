@@ -215,7 +215,8 @@ def main():
 
         with col2:
             st.markdown(
-                f'<a href=><img src="{ghg_image_url}" alt="SLB Logo 5" style="width:800px; height:410px;"></a>',
+                # f'<a href="{slb_website_url}">'
+                f'<img src="{ghg_image_url}" alt="SLB Logo" style="max-height:auto; width:auto; display: block; margin-left: auto; margin-right: auto;"></a>',
                 unsafe_allow_html=True,
             )
 
