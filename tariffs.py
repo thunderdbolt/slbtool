@@ -21,7 +21,7 @@ ghg_image_url = "https://lot.dhl.com/wp-content/uploads/2019/05/res_shutterstock
 ghg_website_url = "https://www.iogp.org/blog/news/how-the-oil-and-gas-industry-contributes-to-a-lower-carbon-future/"
 
 # Display images with responsive design
-col1, col2, col3, col4 = st.columns([1, 1, 6, 2])  # Adjust column ratios as needed
+col1, col2, col3, col4 = st.columns([1, 1, 6, 2], gap="small")  # Adjust column ratios as needed
 
 # Determine the max height based on your layout requirements or through trial and error
 max_image_height = "100px"  # Adjust this value as needed to fit your header layout
