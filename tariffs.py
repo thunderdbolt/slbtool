@@ -17,8 +17,7 @@ pipesim_logo_url = "https://americanpatriotsdecals.com/cdn/shop/products/America
 mid_image_url = "https://images.rigzone.com/images/news/articles/SLB-Bags-5Year-Digital-Deal-with-Petrobras-173287-1200x900.webp"
 seal_award_image_url = "https://cei.org/wp-content/uploads/2017/08/2000px-Seal_of_the_United_States_Department_of_Commerce.svg_.png"
 seal_award_website_url = "https://dataweb.usitc.gov/"
-ghg_image_url = "https://www.gcsrfid.com/wp-content/uploads/2018/08/trucks.png"
-# ghg_website_url = "https://github.com/thunderdbolt/slbtool/blob/main/tariffs.png?raw=true"
+ghg_image_url = "https://github.com/thunderdbolt/slbtool/blob/main/tariffs.png?raw=true"
 
 # Custom CSS to remove padding and margin from columns
 st.markdown(
