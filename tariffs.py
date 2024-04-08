@@ -56,7 +56,7 @@ with col2:
 with col3:
     st.markdown(
         f'<a href="{slb_website_url}">'
-        f'<img src="{mid_image_url}" alt="Middle Image" style="max-height:{max_image_height}; width:100%;">'
+        f'<img src="{mid_image_url}" alt="Middle Image" style="max-height:{max_image_height}; width:90%;">'
         f'</a>',
         unsafe_allow_html=True,
     )
