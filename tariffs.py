@@ -37,9 +37,12 @@ with col2:
 
 with col3:
     st.markdown(
-        f'<a href="{slb_website_url}"><img src="{mid_image_url}" alt="SLB Logo 3" style="width:100%; height:auto;"></a>',
+        f'<a href="{slb_website_url}">'
+        f'<img src="{mid_image_url}" alt="Middle Image" style="width:100%; height:auto; max-height:100px;">'
+        f'</a>',
         unsafe_allow_html=True,
     )
+
 
 with col4:
     st.markdown(
