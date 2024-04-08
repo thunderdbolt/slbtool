@@ -578,30 +578,22 @@ def main():
                             # Write the DataFrame to the Excel writer
                             df.to_excel(writer, index=False, sheet_name='Sheet1')
                             
-                            # Access the workbook and worksheet to apply styles
+                            # Access the openpyxl workbook and worksheet objects to apply styles
                             workbook = writer.book
                             worksheet = writer.sheets['Sheet1']
+                    
+                            # Define the font style for the total row
+                            bold_red_font = Font(bold=True, color="FF0000")
+                            
+                            # Get the max row (last row) in the worksheet
+                            max_row = worksheet.max_row
+                            
+                            # Apply the font style to all cells in the last row
+                            for row in worksheet.iter_rows(min_row=max_row, max_row=max_row):
+                                for cell in row:
+                                    cell.font = bold_red_font
                         
-                        # After closing the writer, the workbook is saved in the buffer
-                        # Now re-open the workbook with openpyxl to apply the formatting
-                        workbook = openpyxl.load_workbook(output)
-                        worksheet = workbook.active
-                        
-                        # Define the font style for the total row
-                        bold_red_font = Font(bold=True, color="FF0000")
-                        
-                        # Get the max row (last row) in the worksheet
-                        max_row = worksheet.max_row
-                        
-                        # Apply the font style to all cells in the last row
-                        for row in worksheet.iter_rows(min_row=max_row, max_row=max_row):
-                            for cell in row:
-                                cell.font = bold_red_font
-                        
-                        # Save the workbook to the BytesIO buffer again after modifying
-                        output.seek(0)
-                        workbook.save(output)
-                        
+                        # At this point, the ExcelWriter context is closed and the data is saved to the output buffer
                         return output.getvalue()
                     
                     def download_excel(df):
