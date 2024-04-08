@@ -13,12 +13,12 @@ st.set_page_config(page_icon="https://upload.wikimedia.org/wikipedia/commons/thu
 slb_logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Logo_2022.svg/2560px-SLB_Logo_2022.svg.png"
 slb_website_url = "https://www.slb.com/"  # The URL you want to open when the logo is clicked
 pipesim_logo_url = "https://americanpatriotsdecals.com/cdn/shop/products/American-Bald-Eagle-American-Flag.jpg?v=1638310152"
-pipesim_website_url = "https://www.software.slb.com/products/pipesim"
+# pipesim_website_url = "https://www.software.slb.com/products/pipesim"
 mid_image_url = "https://images.rigzone.com/images/news/articles/SLB-Bags-5Year-Digital-Deal-with-Petrobras-173287-1200x900.webp"
 seal_award_image_url = "https://cei.org/wp-content/uploads/2017/08/2000px-Seal_of_the_United_States_Department_of_Commerce.svg_.png"
 seal_award_website_url = "https://dataweb.usitc.gov/"
 ghg_image_url = "https://lot.dhl.com/wp-content/uploads/2019/05/res_shutterstock_377010349-800x420.jpg"
-ghg_website_url = "https://www.iogp.org/blog/news/how-the-oil-and-gas-industry-contributes-to-a-lower-carbon-future/"
+# ghg_website_url = "https://www.iogp.org/blog/news/how-the-oil-and-gas-industry-contributes-to-a-lower-carbon-future/"
 
 # Custom CSS to remove padding and margin from columns
 st.markdown(
