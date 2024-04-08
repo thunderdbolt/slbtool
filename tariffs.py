@@ -584,20 +584,21 @@ def main():
                             
                             # Save the workbook
                             writer.save()
-                            return output.getvalue()                      
-                    except:
-                        pass
+                            return output.getvalue()
 
-                    # Function to download the data as an Excel file
-                    def download_excel(df):
-                        excel_data = to_excel(df)
-                        st.download_button(label='📥 Download Excel',
-                                        data=excel_data,
-                                        file_name='tariff_data.xlsx',
-                                        mime='application/vnd.ms-excel')
+                        # Function to download the data as an Excel file
+                        def download_excel(df):
+                            excel_data = to_excel(df)
+                            st.download_button(label='📥 Download Excel',
+                                            data=excel_data,
+                                            file_name='tariff_data.xlsx',
+                                            mime='application/vnd.ms-excel')
+                            
+                        # Call the function to make the download button available in the Streamlit app
+                        download_excel(new_df)
                         
-                    # Call the function to make the download button available in the Streamlit app
-                    download_excel(new_df)
+                    except:
+                        pass    
                 display_editable_table()
 
       
