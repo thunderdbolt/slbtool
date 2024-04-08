@@ -167,6 +167,9 @@ def combine_tariff_information(row):
 ###############################################################################################################################################
 
 def main():
+    # Initialize new_df in session state if it doesn't already exist
+    if 'new_df' not in st.session_state:
+        st.session_state.new_df = pd.DataFrame()
     st.title("HTS Code Data Processing and Tariff Calculation Tool")
 
     # Streamlit app layout with tabs
