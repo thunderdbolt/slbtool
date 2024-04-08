@@ -418,6 +418,7 @@ def main():
                     full_df['CBP Merchandise Processing Fee'] = full_df['CBP Merchandise Processing Fee'].fillna(31.67)
 
                     st.session_state['user_data'] = full_df
+                    st.session_state['new_df'] = new_df
 
                     def parse_general_rate(rate, value, weight):
                         # Convert rate to string if it's not already a string
@@ -599,7 +600,11 @@ def main():
                                         data=excel_data,
                                         file_name='tariff_data.xlsx',
                                         mime='application/vnd.ms-excel')  
-                    download_excel(new_df)
+                    # Ensure new_df is available in the session state before attempting to download
+                    if 'new_df' in st.session_state:
+                        download_excel(st.session_state['new_df'])
+                    else:
+                        st.error("No data available to download.")
       
                 
 
