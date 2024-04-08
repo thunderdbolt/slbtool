@@ -14,7 +14,7 @@ slb_logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/SLB_Lo
 slb_website_url = "https://www.slb.com/"  # The URL you want to open when the logo is clicked
 pipesim_logo_url = "https://americanpatriotsdecals.com/cdn/shop/products/American-Bald-Eagle-American-Flag.jpg?v=1638310152"
 pipesim_website_url = "https://www.software.slb.com/products/pipesim"
-mid_image_url = "https://d2eehagpk5cl65.cloudfront.net/img/c800x450-w800-q80/uploads/2023/03/venti-views-1cqIcrWFQBI-unsplash-800x450.jpg"
+mid_image_url = "https://images.rigzone.com/images/news/articles/SLB-Bags-5Year-Digital-Deal-with-Petrobras-173287-1200x900.webp"
 seal_award_image_url = "https://user-images.githubusercontent.com/135745865/255714101-87efe316-8c80-4e17-a2cf-5afb7a925ec2.jpg"
 seal_award_website_url = "https://www.slb.com/resource-library/updates/2023/slb-recognized-as-a-sustainability-leader-by-seal-for-the-second-consecutive-year"
 ghg_image_url = "https://lot.dhl.com/wp-content/uploads/2019/05/res_shutterstock_377010349-800x420.jpg"
