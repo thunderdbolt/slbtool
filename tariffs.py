@@ -20,6 +20,17 @@ seal_award_website_url = "https://dataweb.usitc.gov/"
 ghg_image_url = "https://lot.dhl.com/wp-content/uploads/2019/05/res_shutterstock_377010349-800x420.jpg"
 ghg_website_url = "https://www.iogp.org/blog/news/how-the-oil-and-gas-industry-contributes-to-a-lower-carbon-future/"
 
+# Custom CSS to remove padding and margin from columns
+st.markdown(
+    """
+    <style>
+    .css-1e5imcs {padding: 0!important;}
+    .st-br {margin: 0!important;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Display images with responsive design
 col1, col2, col3, col4 = st.columns([1, 1, 6, 2], gap="small")  # Adjust column ratios as needed
 
@@ -45,7 +56,7 @@ with col2:
 with col3:
     st.markdown(
         f'<a href="{slb_website_url}">'
-        f'<img src="{mid_image_url}" alt="Middle Image" style="max-height:{max_image_height}; width:auto;">'
+        f'<img src="{mid_image_url}" alt="Middle Image" style="max-height:{max_image_height}; width:100%;">'
         f'</a>',
         unsafe_allow_html=True,
     )
