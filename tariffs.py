@@ -570,28 +570,24 @@ def main():
                 if st.button("Download"):
                     # Function to convert DataFrame to Excel
                     def to_excel(df):
-                        # Create a BytesIO buffer to hold the Excel file in memory
+                        # Create a Pandas Excel writer using openpyxl as the engine.
                         output = BytesIO()
-                    
-                        # Create a Pandas Excel writer using the 'openpyxl' engine and the BytesIO buffer
-                        with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                            # Write the DataFrame to the Excel writer
-                            df.to_excel(writer, index=False, sheet_name='Sheet1')
-                    
-                            # Get the openpyxl workbook and worksheet objects
-                            workbook = writer.book
-                            worksheet = writer.sheets['Sheet1']
-                    
-                            # Define the font style for the total row
-                            bold_red_font = Font(bold=True, color="FF0000")
-                    
-                            # Get the max row (last row) in the worksheet
-                            max_row = worksheet.max_row
-                    
-                            # Apply the font style to all cells in the last row
-                            for row in worksheet.iter_rows(min_row=max_row, max_row=max_row):
-                                for cell in row:
-                                    cell.font = bold_red_font
+                        writer = pd.ExcelWriter(output, engine='openpyxl')
+                        df.to_excel(writer, index=False, sheet_name='Sheet1')
+                        
+                        # Get the openpyxl workbook and worksheet objects.
+                        workbook = writer.book
+                        worksheet = writer.sheets['Sheet1']
+                        
+                        # Define the font style for the total row
+                        bold_red_font = Font(bold=True, color="FF0000")
+                        
+                        # Get the max row (last row) in the worksheet
+                        max_row = worksheet.max_row
+                        
+                        # Apply the font style to all cells in the last row
+                        for cell in worksheet[max_row]:
+                            cell.font = bold_red_font
                     
                         # Get the Excel file content from the BytesIO buffer
                         excel_data = output.getvalue()
