@@ -570,28 +570,36 @@ def main():
                 if st.button("Download"):
                     # Function to convert DataFrame to Excel
                     def to_excel(df):
-                        # Create a Pandas Excel writer using openpyxl as the engine.
-                        output = BytesIO()
-                        writer = pd.ExcelWriter(output, engine='openpyxl')
-                        df.to_excel(writer, index=False, sheet_name='Sheet1')
-                        
-                        # Get the openpyxl workbook and worksheet objects.
-                        workbook = writer.book
-                        worksheet = writer.sheets['Sheet1']
-                        
-                        # Define the font style for the total row
-                        bold_red_font = Font(bold=True, color="FF0000")
-                        
-                        # Get the max row (last row) in the worksheet
-                        max_row = worksheet.max_row
-                        
-                        # Apply the font style to all cells in the last row
-                        for cell in worksheet[max_row]:
-                            cell.font = bold_red_font
-                        
-                        # Save the workbook
-                        writer.save()
-                        return output.getvalue()
+                        try:
+                            # Create a Pandas Excel writer using openpyxl as the engine.
+                            output = BytesIO()
+                            writer = pd.ExcelWriter(output, engine='openpyxl')
+                            df.to_excel(writer, index=False, sheet_name='Sheet1')
+                            
+                            # Add more checks or print statements here if necessary
+                            print(f"DataFrame to be saved as Excel: {df.head()}")
+                            
+                            # Get the openpyxl workbook and worksheet objects.
+                            workbook = writer.book
+                            worksheet = writer.sheets['Sheet1']
+                            
+                            # Define the font style for the total row
+                            bold_red_font = Font(bold=True, color="FF0000")
+                            
+                            # Get the max row (last row) in the worksheet
+                            max_row = worksheet.max_row
+                            
+                            # Apply the font style to all cells in the last row
+                            for cell in worksheet[max_row]:
+                                cell.font = bold_red_font
+                            
+                            # Save the workbook
+                            writer.save()
+                            return output.getvalue()
+                    except Exception as e:
+                        print(f"Error occurred while saving Excel: {e}")
+                        # Handle the error as appropriate, maybe re-raise or return an error response
+                        raise
 
                     # Function to download the data as an Excel file
                     def download_excel(df):
