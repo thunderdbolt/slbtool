@@ -570,19 +570,22 @@ def main():
                 if st.button("Download"):
                     # Function to convert DataFrame to Excel
                     def to_excel(df):
-                        # Create a BytesIO buffer to hold the Excel file
+                        # Create a BytesIO buffer to hold the Excel file in memory
                         output = BytesIO()
                         
-                        # Create a Pandas Excel writer using openpyxl as the engine
-                        writer = pd.ExcelWriter(output, engine='openpyxl')
-                        df.to_excel(writer, index=False, sheet_name='Sheet1')
+                        # Create a Pandas Excel writer using the 'openpyxl' engine and the BytesIO buffer
+                        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                            # Write the DataFrame to the Excel writer
+                            df.to_excel(writer, index=False, sheet_name='Sheet1')
+                            
+                            # Access the workbook and worksheet to apply styles
+                            workbook = writer.book
+                            worksheet = writer.sheets['Sheet1']
                         
-                        # Save the writer to access the workbook and worksheet for styling
-                        writer.save()
-                        
-                        # Get the openpyxl workbook and worksheet objects
-                        workbook = writer.book
-                        worksheet = writer.sheets['Sheet1']
+                        # After closing the writer, the workbook is saved in the buffer
+                        # Now re-open the workbook with openpyxl to apply the formatting
+                        workbook = openpyxl.load_workbook(output)
+                        worksheet = workbook.active
                         
                         # Define the font style for the total row
                         bold_red_font = Font(bold=True, color="FF0000")
@@ -596,7 +599,8 @@ def main():
                                 cell.font = bold_red_font
                         
                         # Save the workbook to the BytesIO buffer again after modifying
-                        writer.book.save(output)
+                        output.seek(0)
+                        workbook.save(output)
                         
                         return output.getvalue()
                     
