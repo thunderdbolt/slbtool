@@ -561,7 +561,7 @@ def main():
                         # Add the Total_Tariffs to the new_df
                         total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
                         new_df = new_df.append(total_row, ignore_index=True)
-
+                        st.session_state['new_df'] = new_df
                       
                     except:
                         pass    
