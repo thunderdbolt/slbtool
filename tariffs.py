@@ -557,15 +557,16 @@ def main():
                 ]
 
                 # Ensure new_df columns are in the correct order
-                new_df = st.session_state['new_df']
-                new_df = new_df[column_order]
-
+                new_df = st.session_state['new_df'][column_order]
+                
                 # Calculate the total tariffs if not already done
                 Total_Tariffs = new_df['Tariffs & Fees to be Paid (USD)'].sum()
-
+                
                 # Add the Total_Tariffs to the new_df
-                total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
-                new_df = new_df.append(total_row, ignore_index=True)
+                total_row_data = [None]*(len(column_order)-1) + [Total_Tariffs]
+                total_row_df = pd.DataFrame([total_row_data], columns=column_order)
+                new_df = pd.concat([new_df, total_row_df], ignore_index=True)
+
                 
                 # Call the function to make the download button available in the Streamlit app
                 if st.button("Download"):
