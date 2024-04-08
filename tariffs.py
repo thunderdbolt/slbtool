@@ -559,7 +559,8 @@ def main():
 
                         # Add the Total_Tariffs to the new_df
                         total_row = pd.Series([None]*(len(column_order)-1) + [Total_Tariffs], index=column_order)
-                        new_df = new_df.append(total_row, ignore_index=True)
+                        if isinstance(new_df, pd.DataFrame):
+                            new_df = new_df.append(total_row, ignore_index=True)
 
                         # Function to convert DataFrame to Excel
                         def to_excel(df):
